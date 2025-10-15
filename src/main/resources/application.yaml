@@ -1,0 +1,65 @@
+server:
+  port: 8080
+ 
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/movie
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: herothaibao99@gmail.com   # <-- THAY BẰNG EMAIL CỦA BẠN
+    password: nzop khsn iycb rdba     # <-- THAY BẰNG MẬT KHẨU ỨNG DỤNG
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+
+springdoc:
+  api-docs:
+    path: /api-docs
+
+
+momo:
+  partnerCode : MOMO
+  accessKey : F8BBA842ECF85
+  secretKey : K951B6PE1waDMi640xX08PD3vg6EkVlz
+  endpoint : https://test-payment.momo.vn/v2/gateway/api
+  returnUrl : http://localhost:8080/api/payment/momo/payment_info
+  ipn-url : http://localhost:8080/api/mom/ipn-handler
+  requestType : payWithMethod
+jwt:
+  Key: "u7S0lNZzkdu0yiM04aw53nlCjFjENGUfQEPXuUQwBnTirTkZaM6CQqi41vU5hL3V"
+frontend:
+  base-url: http://localhost:5173
+
+# QR Code configuration
+qr:
+  code:
+    upload:
+      path: uploads/qr-codes
+    base:
+      url: http://localhost:8080

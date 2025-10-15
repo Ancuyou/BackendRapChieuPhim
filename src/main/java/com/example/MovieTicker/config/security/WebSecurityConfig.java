@@ -29,10 +29,11 @@ public class WebSecurityConfig {
             "/v3/api-docs/**",
             "/api/auth/refresh",
             "/api/auth/forgot-password",
+            "/api/auth/verify-otp",
+            "/api/auth/resend-otp",
             "/api/auth/reset-password",
             "/api/payment/vn_pay/payment_info",
             "/uploads/**"
-            
     };
 
     @Autowired
@@ -42,7 +43,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers( PUBLIC_ENDPOINTS).permitAll()
+                        .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/phim/**", "/api/theloai/**").permitAll() // Cho phép xem phim, thể loại
                         .anyRequest().authenticated()
                 )
